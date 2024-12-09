@@ -108,9 +108,15 @@ st.dataframe(data, width=1000, height=400)
 
 st.markdown("####  Stock Prices Overview")
 ########
-data_reset = data.reset_index()  # Reset the index to remove MultiIndex
-fig = px.line(data_reset, x='Date', y=data.columns[:-1], title="Stock Prices", width=1000, height=600)
+data_reset = data.reset_index()
+# Select a single column for 'y' to avoid MultiIndex issues
+fig = px.line(data_reset, x='Date', y=[column], title="Stock Prices", width=1000, height=600)
+# Display the plot
 st.plotly_chart(fig)
+#############
+# data_reset = data.reset_index()  # Reset the index to remove MultiIndex
+# fig = px.line(data_reset, x='Date', y=data.columns[:-1], title="Stock Prices", width=1000, height=600)
+# st.plotly_chart(fig)
 ###########
 # Plot the selected attribute over time
 # fig = px.line(data, x=data.index, y=data.columns[:-1], title="Stock Prices", width=1000, height=600)
