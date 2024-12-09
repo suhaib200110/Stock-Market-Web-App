@@ -107,11 +107,14 @@ st.write(f'### Stock Data from {start_date} to {end_date}')
 st.dataframe(data, width=1000, height=400)
 
 st.markdown("####  Stock Prices Overview")
-
-
-# Plot the selected attribute over time
-fig = px.line(data, x=data.index, y=data.columns[:-1], title="Stock Prices", width=1000, height=600)
+########
+data_reset = data.reset_index()  # Reset the index to remove MultiIndex
+fig = px.line(data_reset, x='Date', y=data.columns[:-1], title="Stock Prices", width=1000, height=600)
 st.plotly_chart(fig)
+###########
+# Plot the selected attribute over time
+# fig = px.line(data, x=data.index, y=data.columns[:-1], title="Stock Prices", width=1000, height=600)
+# st.plotly_chart(fig)
 
 # # Stock Forecasting with ETS
 # st.markdown('## Stock Price Forecasting')
