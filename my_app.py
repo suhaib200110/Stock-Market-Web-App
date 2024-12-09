@@ -110,7 +110,7 @@ st.markdown("####  Stock Prices Overview")
 ########
 data_reset = data.reset_index()
 # Select a single column for 'y' to avoid MultiIndex issues
-fig = px.line(data_reset, x='Date', y=[column], title="Stock Prices", width=1000, height=600)
+fig = px.line(data_reset, x=data.index, y=data.columns[:-1], title="Stock Prices", width=1000, height=600)
 # Display the plot
 st.plotly_chart(fig)
 #############
